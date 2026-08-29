@@ -3,95 +3,226 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin | RK Creators & Builders</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Admin | RK Creators &amp; Builders</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .admin-body{background:var(--cream);}
+    .admin-wrap{max-width:1040px;margin:0 auto;padding:40px 20px 90px;}
+    .login-box{max-width:420px;margin:70px auto;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:36px;box-shadow:var(--shadow-1);}
+    .enq{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:22px;margin-bottom:16px;}
+    .enq-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:10px;}
+    .enq-tag{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:3px;}
+    .enq-tag.new{background:#fbecea;color:#9c3a27;}
+    .enq-tag.contacted{background:#fdf3e2;color:#8a6410;}
+    .enq-tag.completed{background:#e7f2ea;color:var(--green);}
+    .enq-tag.ongoing{background:#fdf3e2;color:#8a6410;}
+    .enq-time{color:var(--slate);font-size:.84rem;}
+    .enq-body p{margin:0 0 6px;}
+    .enq-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+    .btn-sm{padding:8px 14px;font-size:.85rem;}
+    .status-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+    .summary-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px;}
+    .summary-card{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:18px;}
+    .summary-card b{font-family:var(--font-head);font-size:1.7rem;display:block;color:var(--clay);}
+    .summary-card span{color:var(--slate);font-size:.86rem;}
+    .hide{display:none !important;}
+
+    /* Tabs */
+    .admin-tabs{display:flex;gap:8px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:8px;margin-bottom:30px;}
+    .admin-tab{border:1px solid transparent;background:none;border-radius:4px;padding:10px 18px;font:inherit;font-weight:600;font-size:.95rem;color:var(--slate);cursor:pointer;transition:all .2s var(--ease);}
+    .admin-tab:hover{color:var(--clay);}
+    .admin-tab.active{background:var(--ink);color:#fff;}
+    .admin-tab.spacer{margin-left:auto;}
+    .logout{color:#9c3a27 !important;}
+    .logout:hover{background:#fbecea;color:#9c3a27;}
+
+    /* Project manager */
+    .project-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;}
+    .pj{background:var(--paper);border:1px solid var(--line);border-radius:6px;display:grid;grid-template-columns:150px 1fr;gap:0 20px;margin-bottom:16px;overflow:hidden;}
+    .pj-thumb{min-height:120px;background:var(--sand);background-size:cover;background-position:center;}
+    .pj-body{padding:18px 20px;}
+    .pj-top{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center;}
+    .pj-top h4{margin:0 0 4px;font-family:var(--font-head);font-size:1.15rem;}
+    .pj-meta{color:var(--slate);font-size:.88rem;}
+    .pj-tags{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;}
+    .pj-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+    .pj-progress-renew{margin:8px 0;max-width:300px;display:none;}
+    .pj-progress-renew.show{display:block;}
+    .pj-progress-bar{height:6px;border-radius:10px;background:var(--line);overflow:hidden;}
+    .pj-progress-bar span{display:block;height:100%;background:var(--clay);}
+    .pj-progress-renew small{color:var(--slate);font-size:.8rem;display:flex;justify-content:space-between;margin-bottom:6px;}
+
+    /* Project form */
+    .project-form-card{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:28px;margin-top:10px;box-shadow:var(--shadow-1);}
+    .pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .pf-grid .full{grid-column:1/-1;}
+    .pf-field{display:flex;flex-direction:column;gap:6px;}
+    .pf-field label{font-size:.86rem;font-weight:600;color:var(--ink-soft);}
+    .pf-field label .req{color:var(--clay);}
+    .pf-field input,.pf-field select,.pf-field textarea{padding:11px 12px;border:1px solid var(--line-strong);border-radius:4px;font:inherit;font-size:.94rem;color:var(--ink);background:#fff;}
+    .pf-field input:focus,.pf-field select:focus,.pf-field textarea:focus{outline:none;border-color:var(--clay);box-shadow:0 0 0 3px rgba(181,72,44,.14);}
+    .pf-field textarea{resize:vertical;min-height:90px;}
+    .pf-hint{font-size:.8rem;color:var(--slate-light);}
+    .pf-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;}
+    .pj-form-msg{display:none;padding:12px 14px;border-radius:4px;font-size:.92rem;margin-top:16px;}
+    .pj-form-msg.success{display:block;background:#e7f2ea;color:var(--green);border:1px solid #cfe3d6;}
+    .pj-form-msg.error{display:block;background:#fbecea;color:#9c3a27;border:1px solid #f4cccc;}
+    @media(max-width:768px){
+      .summary-cards{grid-template-columns:repeat(2,1fr);}
+      .pj{grid-template-columns:1fr;}
+      .pj-thumb{height:140px;min-height:0;}
+      .pf-grid{grid-template-columns:1fr;}
+    }
+  </style>
 </head>
-<body class="admin-page">
-  <header class="site-header">
-    <a class="brand" href="index.html">RK <span>Creators & Builders</span></a>
-    <a href="index.html">&larr; View website</a>
+<body class="admin-body" data-page="admin">
+  <header class="site-header" style="position:static;background:var(--paper)">
+    <div class="header-inner wrap">
+      <a class="brand" href="index.html" style="text-decoration:none">
+        <span class="brand-logo"><img src="logo.jpg" alt="RK Creators logo"></span>
+        <span class="brand-text"><strong>RK Creators &amp; Builders</strong><span>Admin Dashboard</span></span>
+      </a>
+      <a class="btn btn-outline" href="index.html">&larr; View website</a>
+    </div>
   </header>
 
-  <main class="admin-main">
-    <div id="login-panel" class="panel login">
+  <div class="admin-wrap">
+    <!-- LOGIN -->
+    <div id="login-view" class="login-box">
       <p class="eyebrow">Private area</p>
-      <h1>Administrator login</h1>
-      <p>Enter your admin Gmail and password to manage projects and customer feedback.</p>
-
-      <form id="login-form" class="admin-form">
-        <label>
-          Gmail
-          <input name="email" type="email" required autocomplete="username" placeholder="Enter admin Gmail">
-        </label>
-        <label>
-          Password
-          <input name="password" type="password" required autocomplete="current-password" placeholder="Enter password">
-        </label>
-        <button class="button" type="submit">Log in</button>
-        <p class="form-message" aria-live="polite"></p>
+      <h3>Administrator login</h3>
+      <p class="muted" style="font-size:.95rem">Enter your admin password to manage enquiries and projects.</p>
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label for="admin-pass">Password</label>
+          <input id="admin-pass" name="password" type="password" required autocomplete="current-password" placeholder="Enter admin password">
+        </div>
+        <button class="btn btn-primary btn-block" type="submit" style="margin-top:14px">Log in</button>
+        <div class="form-msg" id="login-msg" role="status"></div>
       </form>
     </div>
 
-    <div id="dashboard" class="hidden">
-      <p class="eyebrow">Dashboard</p>
-      <h1>Manage website content</h1>
-      <p>Add projects, update their progress, and publish customer feedback. Changes stay saved in this browser.</p>
-
-      <div class="admin-grid">
-        <section class="panel">
-          <h2>Add a project</h2>
-          <form id="project-form" class="admin-form">
-            <label>
-              Project name
-              <input name="name" required placeholder="Example: Green Valley Villa">
-            </label>
-            <label>
-              Location
-              <input name="location" required placeholder="City or area">
-            </label>
-            <label>
-              Status
-              <select name="status">
-                <option value="ongoing">Ongoing</option>
-                <option value="completed">Completed</option>
-              </select>
-            </label>
-            <label>
-              Progress (0-100)
-              <input name="progress" required type="number" min="0" max="100" value="0">
-            </label>
-            <button class="button" type="submit">Save project</button>
-          </form>
-
-          <hr>
-
-          <h2>Add customer feedback</h2>
-          <form id="feedback-form" class="admin-form">
-            <label>
-              Customer name
-              <input name="name" required>
-            </label>
-            <label>
-              Feedback
-              <textarea name="quote" required rows="3"></textarea>
-            </label>
-            <button class="button" type="submit">Publish feedback</button>
-          </form>
-        </section>
-
-        <section class="panel">
-          <h2>Current projects</h2>
-          <div id="admin-project-list"></div>
-
-          <hr>
-
-          <h2>Published feedback</h2>
-          <div id="admin-feedback-list"></div>
-        </section>
+    <!-- DASHBOARD -->
+    <div id="dashboard-view" class="hide">
+      <div class="admin-tabs" role="tablist" aria-label="Admin sections">
+        <button class="admin-tab active" data-view="enquiries" role="tab" aria-selected="true">Enquiries</button>
+        <button class="admin-tab" data-view="projects" role="tab" aria-selected="false">Projects</button>
+        <button class="admin-tab spacer logout" data-action="logout">Log out</button>
       </div>
-    </div>
-  </main>
 
-  <script src="script.js"></script>
+      <!-- ENQUIRIES -->
+      <section id="view-enquiries" class="admin-view" role="tabpanel">
+        <div class="section-head" style="margin-bottom:22px">
+          <p class="eyebrow">Dashboard</p>
+          <h2 style="font-size:2rem">Enquiry Management</h2>
+          <p class="muted">View new, contacted and completed enquiries. Track date &amp; time, and mark each enquiry as you respond.</p>
+        </div>
+
+        <div class="summary-cards" id="summary"></div>
+
+        <div class="status-filters" role="group" aria-label="Filter enquiries">
+          <button class="filter-chip active" data-status="all">All</button>
+          <button class="filter-chip" data-status="new">New</button>
+          <button class="filter-chip" data-status="contacted">Contacted</button>
+          <button class="filter-chip" data-status="completed">Completed</button>
+        </div>
+
+        <div id="enquiry-list"></div>
+        <div id="empty-enquiries" class="empty-state hide">No enquiries in this category yet.</div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="view-projects" class="admin-view hide" role="tabpanel">
+        <div class="section-head" style="margin-bottom:20px">
+          <p class="eyebrow">Project Manager</p>
+          <h2 style="font-size:2rem">Residential Projects</h2>
+          <p class="muted">Add, edit and remove your Completed and Ongoing projects here. Saved changes appear on the website immediately.</p>
+        </div>
+
+        <div class="project-toolbar">
+          <button class="btn btn-primary" id="add-project-btn">+ Add Project</button>
+          <button class="btn btn-outline" id="refresh-projects-btn">Refresh</button>
+        </div>
+
+        <div id="project-list-admin"></div>
+        <div id="project-empty" class="empty-state hide">No projects yet. Click <strong>Add Project</strong> to create your first one. We only publish genuine projects — don't invent project details.</div>
+
+        <div id="project-form-card" class="project-form-card hide">
+          <h3 id="project-form-title" style="margin-bottom:18px">Add Project</h3>
+          <form id="project-form" novalidate>
+            <div class="pf-grid">
+              <div class="pf-field full">
+                <label for="pj-name">Project name <span class="req">*</span></label>
+                <input id="pj-name" name="name" type="text" maxlength="120" required placeholder="e.g. 2-storey independent house">
+              </div>
+              <div class="pf-field">
+                <label for="pj-status">Status <span class="req">*</span></label>
+                <select id="pj-status" name="status">
+                  <option value="completed">Completed</option>
+                  <option value="ongoing">Ongoing</option>
+                </select>
+              </div>
+              <div class="pf-field" id="pj-progress-field">
+                <label for="pj-progress">Construction progress (%)</label>
+                <input id="pj-progress" name="progress" type="number" min="0" max="100" step="1" placeholder="e.g. 65">
+              </div>
+              <div class="pf-field">
+                <label for="pj-type">Project type <span class="req">*</span></label>
+                <select id="pj-type" name="projectType">
+                  <option value="New Home Construction">New Home Construction</option>
+                  <option value="Custom Home Building">Custom Home Building</option>
+                  <option value="Home Renovation &amp; Remodeling">Home Renovation &amp; Remodeling</option>
+                  <option value="Home Extensions &amp; Modifications">Home Extensions &amp; Modifications</option>
+                  <option value="Architectural Planning &amp; Design">Architectural Planning &amp; Design</option>
+                  <option value="Inspection &amp; Repairs">Inspection &amp; Repairs</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="pf-field">
+                <label for="pj-location">Location</label>
+                <input id="pj-location" name="location" type="text" maxlength="120" placeholder="Area / town, e.g. Thuraiyur">
+              </div>
+              <div class="pf-field">
+                <label for="pj-start">Start date</label>
+                <input id="pj-start" name="startDate" type="text" maxlength="40" placeholder="e.g. 2024-06 or Jun 2024">
+              </div>
+              <div class="pf-field">
+                <label for="pj-finish">Completion date</label>
+                <input id="pj-finish" name="finishDate" type="text" maxlength="40" placeholder="e.g. 2025-03 (for completed)">
+              </div>
+              <div class="pf-field full">
+                <label for="pj-desc">Description <span class="req">*</span></label>
+                <textarea id="pj-desc" name="description" rows="3" maxlength="4000" required placeholder="Short, honest summary of the project - what was built and for whom."></textarea>
+              </div>
+              <div class="pf-field full">
+                <label for="pj-scope">Scope of work <span class="pf-hint">(one per line)</span></label>
+                <textarea id="pj-scope" name="scope" rows="4" placeholder="e.g.&#10;Foundation &amp; structural construction&#10;Roofing &amp; finishing&#10;Plumbing, electrical &amp; interiors"></textarea>
+              </div>
+              <div class="pf-field full">
+                <label for="pj-highlights">Construction highlights <span class="pf-hint">(one per line)</span></label>
+                <textarea id="pj-highlights" name="highlights" rows="3" placeholder="e.g.&#10;Quality materials throughout&#10;Completed on schedule&#10;Clear communication at every stage"></textarea>
+              </div>
+              <div class="pf-field full">
+                <label for="pj-images">Project images <span class="pf-hint">(image URLs, one per line — the first image is the cover photo)</span></label>
+                <textarea id="pj-images" name="images" rows="4" placeholder="e.g.&#10;https://your-image-host.com/photo1.jpg&#10;https://your-image-host.com/photo2.jpg"></textarea>
+                <div class="pj-form-msg" id="pj-form-msg" role="status" aria-live="polite"></div>
+              </div>
+            </div>
+            <div class="pf-actions">
+              <button class="btn btn-primary" type="submit" id="pj-save-btn">Save Project</button>
+              <button class="btn btn-outline" type="button" id="pj-cancel-btn">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="assets/js/site.js"></script>
+  <script src="assets/js/admin.js"></script>
 </body>
 </html>

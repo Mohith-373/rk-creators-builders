@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Projects | RK Creators &amp; Builders</title>
+  <meta name="description" content="Browse residential projects by RK Creators & Builders - new homes, renovations and extensions, both completed and ongoing, in and around Thuraiyur, Tamil Nadu.">
+  <link rel="canonical" href="/projects.html">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"CollectionPage","name":"RK Creators & Builders Projects","description":"Residential construction projects"}
+  </script>
+</head>
+<body data-page="projects.html">
+  <style>.page-hero{--hero-img:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80')}</style>
+  <header class="site-header" id="site-header"></header>
+
+  <main id="site-main">
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="breadcrumb"><a href="index.html">Home</a> / Projects</p>
+        <h1>Our Residential Projects</h1>
+        <p>A look at the homes we build and improve. Filter by project type or status to explore our work.</p>
+      </div>
+    </section>
+
+    <section class="section paper">
+      <div class="wrap">
+        <div class="project-filters" role="group" aria-label="Filter projects">
+          <button class="filter-chip active" data-filter="all">All</button>
+          <button class="filter-chip" data-filter="completed">Completed</button>
+          <button class="filter-chip" data-filter="ongoing">Ongoing</button>
+          <button class="filter-chip" data-filter="New Home">New Homes</button>
+          <button class="filter-chip" data-filter="Renovation">Renovations</button>
+          <button class="filter-chip" data-filter="Extension">Extensions</button>
+        </div>
+        <div class="project-grid" id="project-list"></div>
+        <div id="project-empty" class="empty-state hidden">No projects in this category yet. Our project gallery is being updated - please check back soon or <a href="contact.html#enquiry">contact us</a> for examples of our work.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="assets/js/site.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/projects.js"></script>
+</body>
+</html>

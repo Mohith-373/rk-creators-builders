@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Never allow crawling of the admin area.
+Disallow: /admin.html
+Disallow: /api/
+
+Sitemap: https://rk-creators-builders.netlify.app/sitemap.xml

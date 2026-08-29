@@ -1,0 +1,4 @@
+{
+  "$note": "Edit this file to add REAL residential projects. Remove or replace the 'sample' entries below. Fields: id (slug), name, location, projectType (New Home | Renovation | Extension | Consultation | Other), status (completed | ongoing), startDate (YYYY-MM), finishDate or plan, progress (0-100, for ongoing), description, scope (array of work items), highlights (array of bullet points), images (array of image URLs), featured (bool).",
+  "projects": []
+}

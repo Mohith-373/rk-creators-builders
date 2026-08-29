@@ -1,0 +1,35 @@
+[build]
+  command = "echo 'Static site - no build step required'"
+  publish = "."
+  functions = "netlify/functions"
+
+[dev]
+  framework = "#static"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https://*.unsplash.com https://*.supabase.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://*.netlify.app; frame-src https://www.google.com https://maps.google.com;"
+
+# Redirect API calls to functions
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Local business pages
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+# 404
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404

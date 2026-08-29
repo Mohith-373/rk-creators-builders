@@ -1,2 +1,16 @@
+# Dependencies & build output
+node_modules/
+.netlify/
+dist/
+
+# Environment / secrets - NEVER commit real secrets
+.env
+.env.*
+!.env.example
+
+# Old archive
 *.zip
-.agents/
+
+# OS
+.DS_Store
+Thumbs.db
