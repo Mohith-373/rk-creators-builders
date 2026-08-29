@@ -17,8 +17,8 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install function dependencies
+        run: npm install --no-save --no-package-lock --no-audit --no-fund @netlify/blobs@^8.1.0 nodemailer@^6.9.15
 
       - name: Deploy to Netlify
         run: npx netlify-cli@17.0.0 deploy --prod --dir . --message "Deploy from GitHub Actions"
